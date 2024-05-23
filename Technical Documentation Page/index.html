@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Technical Documentation Page</title>
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>CNN Documentation</header>
+      <a class="nav-link" href="#Introduction">Introduction</a>
+      <a class="nav-link" href="#Layers_of_CNN">Layers of CNN</a>
+      <a class="nav-link" href="#CNN_Architecture">CNN Architecture</a>
+      <a class="nav-link" href="#How_Convolutional_Layers_Works">How Convolutional Layers Works</a>
+      <a class="nav-link" href="#Layers_used_to_build_ConvNets">Layers used to build ConvNets</a>
+      <a class="nav-link" href="#Code">Code</a>
+    </nav>
+    <main id="main-doc">
+       <section class="main-section" id="Introduction">
+         <header>Introduction</header>
+         <p>
+           A Convolutional Neural Network (CNN) is a type of Deep Learning neural network architecture commonly used in Computer Vision. Computer vision is a field of Artificial Intelligence that enables a computer to understand and interpret the image or visual data. 
+         </p>
+
+         <p>
+           When it comes to Machine Learning, Artificial Neural Networks perform really well. Neural Networks are used in various datasets like images, audio, and text. Different types of Neural Networks are used for different purposes, for example for predicting the sequence of words we use Recurrent Neural Networks more precisely an LSTM, similarly for image classification we use Convolution Neural networks. In this blog, we are going to build a basic building block for CNN.
+         </p>
+       </section>
+
+       <section class="main-section" id="Layers_of_CNN">
+         <header>Layers of CNN</header>
+         <p>
+           In a regular Neural Network there are three types of layers:
+
+Input Layers: It’s the layer in which we give input to our model. The number of neurons in this layer is equal to the total number of features in our data (number of pixels in the case of an image).
+         </p>
+
+         <p>
+Hidden Layer: The input from the Input layer is then fed into the hidden layer. There can be many hidden layers depending on our model and data size. Each hidden layer can have different numbers of neurons which are generally greater than the number of features. The output from each layer is computed by matrix multiplication of the output of the previous layer with learnable weights of that layer and then by the addition of learnable biases followed by activation function which makes the network nonlinear.
+        </p>
+
+        <p>
+Output Layer: The output from the hidden layer is then fed into a logistic function like sigmoid or softmax which converts the output of each class into the probability score of each class.
+         <p>
+
+        <p>
+          The data is fed into the model and output from each layer is obtained from the above step is called feedforward, we then calculate the error using an error function, some common error functions are cross-entropy, square loss error, etc. The error function measures how well the network is performing. After that, we backpropagate into the model by calculating the derivatives. This step is called Backpropagation which basically is used to minimize the loss.
+        </p>
+
+       </section>
+
+       <section class="main-section" id="CNN_Architecture">
+         <header>CNN Architecture</header>
+         <p>
+           Convolutional Neural Network consists of multiple layers like the input layer, Convolutional layer, Pooling layer, and fully connected layers. The Convolutional layer applies filters to the input image to extract features, the Pooling layer downsamples the image to reduce computation, and the fully connected layer makes the final prediction. The network learns the optimal filters through backpropagation and gradient descent.
+         </p>
+       </section>
+
+       <section class="main-section" id="How_Convolutional_Layers_Works">
+         <header>How Convolutional Layers Works</header>
+         <p>
+           Convolution Neural Networks or covnets are neural networks that share their parameters. Imagine you have an image. It can be represented as a cuboid having its length, width (dimension of the image), and height (i.e the channel as images generally have red, green, and blue channels). 
+        </p>
+
+        <p>
+          Now imagine taking a small patch of this image and running a small neural network, called a filter or kernel on it, with say, K outputs and representing them vertically. Now slide that neural network across the whole image, as a result, we will get another image with different widths, heights, and depths. Instead of just R, G, and B channels now we have more channels but lesser width and height. This operation is called Convolution. If the patch size is the same as that of the image it will be a regular neural network. Because of this small patch, we have fewer weights. 
+        </p>
+
+        <p>
+          Now let’s talk about a bit of mathematics that is involved in the whole convolution process. 
+
+<li>Convolution layers consist of a set of learnable filters (or kernels) having small widths and heights and the same depth as that of input volume (3 if the input layer is image input).</li>
+<li>For example, if we have to run convolution on an image with dimensions 34x34x3. The possible size of filters can be axax3, where ‘a’ can be anything like 3, 5, or 7 but smaller as compared to the image dimension.</li>
+<li>During the forward pass, we slide each filter across the whole input volume step by step where each step is called stride (which can have a value of 2, 3, or even 4 for high-dimensional images) and compute the dot product between the kernel weights and patch from input volume.</li>
+<li>As we slide our filters we’ll get a 2-D output for each filter and we’ll stack them together as a result, we’ll get output volume having a depth equal to the number of filters. The network will learn all the filters.</li>
+        </p>
+       </section>
+
+       <section class="main-section" id="Layers_used_to_build_ConvNets">
+         <header>Layers used to build ConvNets</header>
+         <p>
+           A complete Convolution Neural Networks architecture is also known as covnets. A covnets is a sequence of layers, and every layer transforms one volume to another through a differentiable function. 
+Types of layers: datasets
+Let’s take an example by running a covnets on of image of dimension 32 x 32 x 3. 
+<li>Input Layers: It’s the layer in which we give input to our model. In CNN, Generally, the input will be an image or a sequence of images. This layer holds the raw input of the image with width 32, height 32, and depth 3.</li>
+<li>Convolutional Layers: This is the layer, which is used to extract the feature from the input dataset. It applies a set of learnable filters known as the kernels to the input images. The filters/kernels are smaller matrices usually 2×2, 3×3, or 5×5 shape. it slides over the input image data and computes the dot product between kernel weight and the corresponding input image patch. The output of this layer is referred as feature maps. Suppose we use a total of 12 filters for this layer we’ll get an output volume of dimension 32 x 32 x 12.</li>
+<li>Activation Layer: By adding an activation function to the output of the preceding layer, activation layers add nonlinearity to the network. it will apply an element-wise activation function to the output of the convolution layer. Some common activation functions are RELU: max(0, x),  Tanh, Leaky RELU, etc. The volume remains unchanged hence output volume will have dimensions 32 x 32 x 12.</li>
+<li>Pooling layer: This layer is periodically inserted in the covnets and its main function is to reduce the size of volume which makes the computation fast reduces memory and also prevents overfitting. Two common types of pooling layers are max pooling and average pooling. If we use a max pool with 2 x 2 filters and stride 2, the resultant volume will be of dimension 16x16x12. </li>
+<li>Flattening: The resulting feature maps are flattened into a one-dimensional vector after the convolution and pooling layers so they can be passed into a completely linked layer for categorization or regression.</li>
+<li>Fully Connected Layers: It takes the input from the previous layer and computes the final classification or regression task.</li>
+         </p>
+       </section>
+
+       <section class="main-section" id="Code">
+          <header>Code</header>
+          <p>
+          <h1>Import the necessary libraries </h1>
+          <code>
+            # import the necessary libraries 
+              import numpy as np 
+              import tensorflow as tf 
+              import matplotlib.pyplot as plt 
+              from itertools import product 
+          </code>
+
+          <code>
+            <h3>Set the param </h3>
+            # set the param  
+plt.rc('figure', autolayout=True) 
+plt.rc('image', cmap='magma') 
+  
+  <h3>Define the kernel </h3>
+# define the kernel 
+kernel = tf.constant([[-1, -1, -1], 
+                    [-1,  8, -1], 
+                    [-1, -1, -1], 
+                   ]) 
+  
+  <h3>Load the image </h3>
+# load the image 
+image = tf.io.read_file('Ganesh.jpg') 
+image = tf.io.decode_jpeg(image, channels=1) 
+image = tf.image.resize(image, size=[300, 300]) 
+  
+  <h3>Plot the image </h3>
+# plot the image 
+img = tf.squeeze(image).numpy() 
+plt.figure(figsize=(5, 5)) 
+plt.imshow(img, cmap='gray') 
+plt.axis('off') 
+plt.title('Original Gray Scale image') 
+plt.show(); 
+  
+ <h3>Reformat </h3> 
+# Reformat 
+image = tf.image.convert_image_dtype(image, dtype=tf.float32) 
+image = tf.expand_dims(image, axis=0) 
+kernel = tf.reshape(kernel, [*kernel.shape, 1, 1]) 
+kernel = tf.cast(kernel, dtype=tf.float32) 
+          </code>
+
+        <h1>Convolution layer</h1>
+          <code>
+            # convolution layer 
+conv_fn = tf.nn.conv2d 
+  
+image_filter = conv_fn( 
+    input=image, 
+    filters=kernel, 
+    strides=1, # or (1, 1) 
+    padding='SAME', 
+) 
+  
+plt.figure(figsize=(15, 5)) 
+
+ <h3>Plot the convolved image</h3> 
+# Plot the convolved image 
+plt.subplot(1, 3, 1) 
+  
+plt.imshow( 
+    tf.squeeze(image_filter) 
+) 
+plt.axis('off') 
+plt.title('Convolution') 
+  
+          </code>
+
+<h1>Activation layer</h1>
+          <code>
+            # activation layer 
+relu_fn = tf.nn.relu 
+# Image detection 
+image_detect = relu_fn(image_filter) 
+  
+plt.subplot(1, 3, 2) 
+plt.imshow( 
+    # Reformat for plotting 
+    tf.squeeze(image_detect) 
+) 
+  
+plt.axis('off') 
+plt.title('Activation') 
+          </code>
+          
+          <h1>Pooling layer</h1>
+          <code>
+            # Pooling layer 
+pool = tf.nn.pool 
+image_condense = pool(input=image_detect,  
+                             window_shape=(2, 2), 
+                             pooling_type='MAX', 
+                             strides=(2, 2), 
+                             padding='SAME', 
+                            ) 
+  
+plt.subplot(1, 3, 3) 
+plt.imshow(tf.squeeze(image_condense)) 
+plt.axis('off') 
+plt.title('Pooling') 
+plt.show() 
+          </code>
+        </p>
+       </section>
+    </main>
+  </body>
+</html>

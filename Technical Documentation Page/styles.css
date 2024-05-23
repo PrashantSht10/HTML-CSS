@@ -1,0 +1,14 @@
+@media (max-width: 1000px) and (min-width: 700px) {
+    .nav-link{
+      width: 500px;
+    }
+   
+    .main-section{
+      width: 700px;
+    }
+  }
+  
+  header{
+    font-weight: bold;
+    font-size: 20px;
+  }
