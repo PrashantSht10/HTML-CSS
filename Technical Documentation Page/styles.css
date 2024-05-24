@@ -1,14 +1,25 @@
 @media (max-width: 1000px) and (min-width: 700px) {
-    .nav-link{
-      width: 500px;
-    }
-   
-    .main-section{
-      width: 700px;
-    }
+  .nav-link{
+    width: 750px;
   }
-  
-  header{
-    font-weight: bold;
-    font-size: 20px;
+ 
+  .main-section{
+    width: 800px;
   }
+}
+
+header{
+  font-weight: bold;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.nav-link{
+  display: block;
+}
+
+code{
+  background-color: rgba(127, 127, 127, 0.5);
+  color: solid black;
+  display: block;
+}
