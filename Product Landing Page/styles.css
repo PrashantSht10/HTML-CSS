@@ -135,11 +135,36 @@
   }
   
   main {
-    padding-top: 60px; 
+    padding-top: 70px; 
   }
   
   section {
-    padding-top: 60px; 
+    padding-top: 5px; 
   }
   
+  #footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+  }
   
+  .contact, .follow-us {
+    margin-bottom: 20px;
+  }
+  
+  .contact h2, .follow-us h2 {
+    font-size: 20px;
+  }
+  
+  .contact p {
+    margin: 5px 0;
+  }
+  
+  .follow-us a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .follow-us a:hover {
+    text-decoration: underline;
+  }
