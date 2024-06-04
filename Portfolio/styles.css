@@ -1,0 +1,48 @@
+@media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  html{
+    background-color: gray;
+  }
+  
+  #welcome-section{
+    height: 100vh;
+  }
+  
+  ul{
+   display: flex;
+   gap: 30px;
+   list-style-type: none;
+   font-size: 20px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+   cursor: pointer;
+   color: white;
+  }
+  
+  .nav-link:hover{
+    background-color: blue;
+  }
+  
+  h1, h2{
+    text-align: center;
+    font-size: 30px;
+    font-family: sans-serif;
+  }
+  
+  p{
+    color: white;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .project-tile{
+    text-decoration: none;
+  }
+  
+  
